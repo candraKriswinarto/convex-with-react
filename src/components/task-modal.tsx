@@ -1,6 +1,7 @@
-import { FormData } from "../types"
+import { FormData, Task } from "../types"
 
 interface TaskModalProps {
+  task?: Task | null,
   formData: FormData,
   setFormData: (data: FormData) => void
   isOpen: boolean,
@@ -12,7 +13,8 @@ export default function TaskModal({
   onClose,
   formData,
   setFormData,
-  onSubmit
+  onSubmit,
+  task
 }: TaskModalProps) {
 
   if (!isOpen) {
@@ -23,7 +25,7 @@ export default function TaskModal({
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4'>
       <div className='bg-white rounded-lg max-w-md w-full p-6'>
         <h2 className='text-2xl font-bold mb-4'>
-          Add New Task
+          {task ? 'Edit Task' : 'Add New Task'}
         </h2>
         <form className="space-y-4" onSubmit={onSubmit}>
           <div>
@@ -66,7 +68,7 @@ export default function TaskModal({
               type='submit'
               className='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200'
             >
-              Add
+              {task ? 'Update' : 'Add'}
             </button>
           </div>
         </form>

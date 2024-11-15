@@ -21,3 +21,17 @@ export const addTask = mutation({
     });
   }
 })
+
+export const updateTask = mutation({
+  args: {
+    id: v.id('tasks'),
+    title: v.string(),
+    description: v.string()
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {
+      title: args.title,
+      description: args.description,
+    });
+  }
+})

@@ -1,6 +1,7 @@
+import { Id } from "../../convex/_generated/dataModel";
 
 export interface Task {
-  _id: string,
+  _id: Id<'tasks'>;
   title: string,
   description: string,
   completed: boolean

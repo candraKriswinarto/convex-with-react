@@ -2,9 +2,10 @@ import { CircleCheck, CircleX } from "lucide-react"
 import { Task } from "../types"
 
 interface TaskCardProps {
-  task: Task
+  task: Task,
+  onEdit: (task: Task) => void
 }
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({ task, onEdit }: TaskCardProps) {
   return (
     <div
       className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 ${task.completed ? 'border-l-4 border-green-500' : ''
@@ -37,7 +38,7 @@ export default function TaskCard({ task }: TaskCardProps) {
       </div>
       <div className='flex justify-end space-x-3'>
         <button
-          onClick={() => { }}
+          onClick={() => onEdit(task)}
           className='text-blue-500 font-medium'
         >
           Edit
