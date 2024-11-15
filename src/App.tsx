@@ -22,6 +22,7 @@ function App() {
   const addTask = useMutation(api.tasks.addTask);
   const updateTask = useMutation(api.tasks.updateTask);
   const deleteTask = useMutation(api.tasks.removeTask);
+  const toggleComplete = useMutation(api.tasks.toggleComplete);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +73,13 @@ function App() {
     }
   }
 
+  const handleToggleComplete = async (task: Task) => {
+    await toggleComplete({
+      id: task._id,
+      completed: !task.completed,
+    });
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header onAddTask={() => handleOpenModal()} />
@@ -84,6 +92,7 @@ function App() {
               task={task}
               onEdit={handleOpenModal}
               onDelete={handleDelete}
+              onToggleComplete={handleToggleComplete}
             />
           ))}
         </div>
