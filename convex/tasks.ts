@@ -35,3 +35,12 @@ export const updateTask = mutation({
     });
   }
 })
+
+export const removeTask = mutation({
+  args: {
+    id: v.id('tasks'),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  }
+})

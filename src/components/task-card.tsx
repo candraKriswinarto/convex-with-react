@@ -1,11 +1,13 @@
 import { CircleCheck, CircleX } from "lucide-react"
 import { Task } from "../types"
+import { Id } from "../../convex/_generated/dataModel"
 
 interface TaskCardProps {
   task: Task,
-  onEdit: (task: Task) => void
+  onEdit: (task: Task) => void,
+  onDelete: (id: Id<'tasks'>) => void
 }
-export default function TaskCard({ task, onEdit }: TaskCardProps) {
+export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
   return (
     <div
       className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 ${task.completed ? 'border-l-4 border-green-500' : ''
@@ -44,7 +46,7 @@ export default function TaskCard({ task, onEdit }: TaskCardProps) {
           Edit
         </button>
         <button
-          onClick={() => { }}
+          onClick={() => onDelete(task._id)}
           className='text-red-500 font-medium'
         >
           Delete
